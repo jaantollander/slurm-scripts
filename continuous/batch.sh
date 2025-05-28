@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=continuous-job
+#SBATCH --job-name=slurm-continuous-job
 #SBATCH --account=project_462000007
 #SBATCH --partition=small
 #SBATCH --time=00:02:00
@@ -14,6 +14,8 @@
 export -n SLURM_MEM_PER_CPU
 export -n SLURM_MEM_PER_GPU
 export -n SLURM_MEM_PER_NODE
+
+# Add new job to the queue
 sbatch --dependency="afterok:$SLURM_JOB_ID" batch.sh
 
 # Work should exit succesfully before the time limit is up

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=cron-job
+#SBATCH --job-name=slurm-cron-job
 #SBATCH --account=project_462000007
 #SBATCH --partition=small
 #SBATCH --time=00:02:00
@@ -14,7 +14,9 @@
 export -n SLURM_MEM_PER_CPU
 export -n SLURM_MEM_PER_GPU
 export -n SLURM_MEM_PER_NODE
-NEW_DATE=$(date  +"%Y-%m-%dT%H:%M:00" -d "02:00 today +1 day")
+
+# Add new job to the queue
+NEW_DATE=$(date +"%Y-%m-%dT%H:%M:00" -d "02:00 today +1 day")
 sbatch --dependency="afterok:$SLURM_JOB_ID" --begin="$NEW_DATE" batch.sh
 
 # Work should exit succesfully before the time limit is up
