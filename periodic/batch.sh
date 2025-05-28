@@ -16,8 +16,9 @@ export -n SLURM_MEM_PER_GPU
 export -n SLURM_MEM_PER_NODE
 
 # Add new job to the queue
-NEW_DATE=$(date +"%Y-%m-%dT%H:%M:00" -d "02:00 today +1 day")
+NEW_DATE=$(date +"%Y-%m-%dT%H:%M:%S" -d "+2 minutes")
 sbatch --dependency="afterok:$SLURM_JOB_ID" --begin="$NEW_DATE" batch.sh
+echo "New job is sheduled to begin at $NEW_DATE"
 
 # Work should exit succesfully before the time limit is up
 echo "Working on job $SLURM_JOB_ID"
