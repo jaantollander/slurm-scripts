@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=slurm-cron-job
+#SBATCH --job-name=slurm-periodic-job
 #SBATCH --account=project_462000007
 #SBATCH --partition=small
 #SBATCH --time=00:02:00
